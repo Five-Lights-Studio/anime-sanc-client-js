@@ -4,12 +4,156 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Anime Sanctuary</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .navbar-nav .nav-link {
+            position: relative;
+        }
+
+        .navbar-nav .nav-item .dropdown-menu {
+            min-width: 200px;
+        }
+
+        .navbar-nav .nav-item .dropdown-menu a {
+            padding: 10px 15px;
+        }
+
+        .navbar-nav .nav-item .dropdown-menu .dropdown-item:hover {
+            background-color: #f8f9fa;
+        }
+
+        /* Custom styles for the login form */
+        .login-container {
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 15px;
+            z-index: 1000;
+        }
+
+        .login-container form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .login-container label {
+            margin-bottom: 5px;
+        }
+
+        .login-container input {
+            margin-bottom: 10px;
+            padding: 5px;
+            border-radius: 4px;
+            border: 1px solid #ced4da;
+        }
+
+        .login-container button {
+            background-color: #007bff;
+            border: none;
+            color: white;
+            padding: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .login-container button:hover {
+            background-color: #0056b3;
+        }
+
+        /* To avoid content being hidden under navbar */
+        body {
+            padding-top: 70px; /* Adjust based on your navbar height */
+        }
+    </style>
 </head>
 <body>
     <header>
         <h1>Anime Sanctuary</h1>
     </header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Anime Sanctuary</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAnime" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Anime
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownAnime">
+                        <a class="dropdown-item" href="https://myanimelist.net/anime.php?_location=mal_h_m">Anime Search</a>
+                        <a class="dropdown-item" href="https://myanimelist.net/topanime.php?_location=mal_h_m">Top Anime</a>
+                        <a class="dropdown-item" href="https://myanimelist.net/anime/season?_location=mal_h_m">Seasonal Anime</a>
+                        <a class="dropdown-item" href="https://myanimelist.net/watch/episode?_location=mal_h_m_a">Videos</a>
+                        <a class="dropdown-item" href="https://myanimelist.net/reviews.php?t=anime&amp;_location=mal_h_m">Reviews</a>
+                        <a class="dropdown-item" href="https://myanimelist.net/recommendations.php?s=recentrecs&amp;t=anime&amp;_location=mal_h_m">Recommendations</a>
+                        <a class="dropdown-item" href="https://myanimelist.net/forum?topicid=2138549&amp;_location=mal_h_m">2024 Challenge</a>
+                        <a class="dropdown-item" href="https://fal.myanimelist.net/?utm_source=MAL&amp;utm_medium=headermenu&amp;utm_campaign=fal&amp;utm_content=falhome&amp;_location=mal_h_m">Fantasy Anime League</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownCommunity" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Community
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownCommunity">
+                        <a class="dropdown-item" href="https://myanimelist.net/stacks?_location=mal_h_m">Interest Stacks</a>
+                        <a class="dropdown-item" href="https://myanimelist.net/forum/?_location=mal_h_m">Forums</a>
+                        <a class="dropdown-item" href="https://myanimelist.net/clubs.php?_location=mal_h_m">Clubs</a>
+                        <a class="dropdown-item" href="https://myanimelist.net/blog.php?_location=mal_h_m">Blogs</a>
+                        <a class="dropdown-item" href="https://myanimelist.net/users.php?_location=mal_h_m">Users</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownIndustry" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Industry
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownIndustry">
+                        <a class="dropdown-item" href="https://myanimelist.net/news?_location=mal_h_m">News</a>
+                        <a class="dropdown-item" href="https://myanimelist.net/featured?_location=mal_h_m">Featured Articles</a>
+                        <a class="dropdown-item" href="https://myanimelist.net/people.php?_location=mal_h_m">People</a>
+                        <a class="dropdown-item" href="https://myanimelist.net/character.php?_location=mal_h_m">Characters</a>
+                        <a class="dropdown-item" href="https://myanimelist.net/company?_location=mal_h_m">Companies</a>
+                        <a class="dropdown-item" href="https://mxj.myanimelist.net/?_location=mal_h_m">MAL×Japan</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownWatch" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Watch
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownWatch">
+                        <a class="dropdown-item" href="https://myanimelist.net/watch/episode?_location=mal_h_m">Episode Videos</a>
+                        <a class="dropdown-item" href="https://myanimelist.net/watch/promotion?_location=mal_h_m">Anime Trailers</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownRead" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Read
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownRead">
+                        <a class="dropdown-item" href="https://myanimelist.net/store?_location=mal_h_m">Manga Store</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownHelp" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Help
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownHelp">
+                        <a class="dropdown-item" href="https://myanimelist.net/about.php?_location=mal_h_m">About</a>
+                        <a class="dropdown-item" href="https://myanimelist.net/about.php?go=support&amp;_location=mal_h_m">Support</a>
+                        <a class="dropdown-item" href="https://myanimelist.net/advertising?_location=mal_h_m">Advertising</a>
+                        <a class="dropdown-item" href="https://myanimelist.net/forum/?topicid=515949&amp;_location=mal_h_m">FAQ</a>
+                        <a class="dropdown-item" href="https://myanimelist.net/modules.php?go=report&amp;_location=mal_h_m">Report</a>
+                        <a class="dropdown-item" href="https://myanimelist.net/staff?_location=mal_h_m">Staff
+
+                        <a class="dropdown-item" href="https://myanimelist.net/staff?_location=mal_h_m">Staff</a>
+                        <a class="dropdown-item" href="https://myanimelist.net/membership?_location=mal_h_m">MAL Supporter</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
     <main>
         <section id="auth-section">
             <h2>Login</h2>
@@ -27,5 +171,8 @@
         </section>
     </main>
     <script src="js/main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zyAOxRMf4E2G5lzO8Q6j8duiE6A5xk5l0Y8/pL3jX" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9I4PR9UM1Uj6M8aW9J3FHZ7wFVq7hE6S3RA2Zkhz6It4hMx4xYjX" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-lpy2kg97k5to0SC+MUL8Jjzy0KoPrc6zL7fV9nZ1Hp4pXH6uqU0qlXfD3wU5IzlSx" crossorigin="anonymous"></script>
 </body>
 </html>
