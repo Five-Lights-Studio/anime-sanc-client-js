@@ -215,27 +215,6 @@ header {
     margin-right: 20px; /* 오른쪽 여백 추가 */
 }
 
-
-.follow-button {
-    background-color: #4483ff;
-    color: white;
-    border: none;
-    padding: 5px 20px;
-    font-size: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 80px;
-    height: 30px;
-    transition: background-color 0.3s, color 0.3s; /* 전환 효과 추가 */
-}
-
-
-.follow-button.active {
-    background-color: white; /* 클릭 시 배경색 반전 */
-    color: black;
-    border: 2px solid black;
-}
-
 .profile-info h3 {
     margin: 5px;
     font-size: 20px;
@@ -379,24 +358,7 @@ header {
     margin-bottom: 10px;
 }
 
-.follow-button {
-    width: 95px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    background-color: #03914f;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 13px;
-}
 
-.follow-button i {
-    margin-right: 10px;
-}
 
 /* 아이콘 스타일 및 색상 변경 */
 .post-icon {
@@ -700,8 +662,10 @@ header {
     margin: 20px auto; /* 중앙 정렬 */
     text-align: center;
     padding: 10px 20px;
+    border-radius: 10px; /* 모서리 라운드 처리 */
     background-color: #f0f0f0;
     border: none;
+
     cursor: pointer;
    
 }
@@ -743,7 +707,7 @@ header {
 }
 
 .comment-box button {
-    background-color: #4a7ae0;
+    background-color: #919191;
     color: white;
     border: none;
     padding: 5px 10px;
@@ -752,57 +716,7 @@ header {
     font-size: 12px;
 }
 
-/* 페이지네이션 스타일 */
-.pagination {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 10px;
-    padding: 10px 20px; /* 좌우에 여백을 추가 */
-    max-width: 620px;
-    margin-left: auto;
-    margin-right: auto; /* 중앙 정렬 */
-}
 
-.pagination-arrow {
-    background-color: #027d3f;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 12px;
-    margin: 0 5px;
-}
-
-
-.pagination-numbers {
-    display: flex;
-    justify-content: center;
-}
-
-
-.pagination-numbers button {
-    background-color: #ffffff;
-    color: #03914f;
-    border: 1px solid #ddd;
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 12px;
-    margin: 0 3px;
-    transition: background-color 0.3s;
-}
-
-.pagination-numbers button.active {
-    background-color: #03914f;
-    color: white;
-}
-
-.pagination-numbers button:hover {
-    background-color: #027d3f;
-    color: #ffffff;
-}
 
 /* 말풍선 스타일 */
 .tooltip {
@@ -862,4 +776,65 @@ header {
     font-size: 12px;
     padding: 5px 10px;
     margin-right: 5px;
+}
+
+/* 답글달기 버튼 스타일 */
+.reply-button {
+    background-color: #797979;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    font-size: 12px;
+    border-radius: 5px;
+    width: 90px;
+    height: 30px;
+    cursor: pointer;
+    text-align: center;
+    vertical-align: middle; /* 텍스트 가운데 정렬 */
+}
+
+.reply-button:hover {
+    background-color: white; /* 호버 시 배경색 */
+    color: #4CAF50; /* 호버 시 글자색 */
+}
+
+/* 확인/수정/삭제 버튼 */
+.edit-button, .delete-button {
+    background-color: #027d3f;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    margin-right: 5px;
+    font-size: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.edit-button:hover, .delete-button:hover {
+    background-color: #026a34; /* 호버 시 색상 변경 */
+}
+
+
+
+/* フォローボタン 수정 */
+.follow-button {
+    background-color: #378eff;
+    color: white;
+    border: none;
+    font-weight: bold;
+    width: 100px;
+    padding: 10px 20px;
+    font-size: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+
+
+.follow-button.active {
+    background-color: white; /* 클릭 시 배경색 변경 */
+    color: black;
+    border: 2px solid black;
 }
