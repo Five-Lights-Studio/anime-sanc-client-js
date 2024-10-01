@@ -26,7 +26,7 @@
             <div class="icon1">
                 <img src="/icon/free-icon-alarm-bell-6367716.png" alt="icon-1" onclick="toggleNotificationDropdown()">
                 <div id="notification-dropdown" class="dropdown-content notification-dropdown">
-                    <a href="#">A님이 대댓글을 작성하셨습니다</a>
+                    <a href="searchResult.html">A님이 답글을 작성하였습니다</a>
                 </div>
             </div>
             
@@ -38,7 +38,7 @@
                     <a href="Setting.html">設定</a>
                 </div>
             </div>
-            <button class="post-button" onclick="window.location.href='#';">投稿</button> <!-- 이동 경로 설정: # -->
+            <button class="post-button" onclick="window.location.href='PostWriting.html';">投稿</button>
         </div>
     </header>
 
@@ -117,7 +117,7 @@
                     <span class="comment-username">ユーザー1</span>
                     <p>本内容はテスト用です。</p>
                     <span class="comment-date">2024年9月7日 14:30</span>
-                    <button class="reply-button" onclick="toggleReply(this)">답글달기</button>
+                    <button class="reply-button" onclick="toggleReply(this)">コメント</button>
                     <!-- 대댓글 입력창 -->
                     <div class="reply-box" style="display:none;">
                         <span class="comment-username">TEST1</span>
@@ -296,23 +296,33 @@
         }
     }
 
-    // 알림 드롭다운 토글 기능
    // 알람 드롭다운 토글 기능
 function toggleNotificationDropdown() {
     const dropdown = document.getElementById('notification-dropdown');
-    dropdown.classList.toggle('show'); // 'show' 클래스를 토글하여 드롭다운을 열고 닫음
+    dropdown.classList.toggle('show');
 }
 
 // 프로필 드롭다운 토글 기능
 function toggleProfileDropdown() {
     const dropdown = document.getElementById('profile-dropdown');
-    dropdown.classList.toggle('show'); // 'show' 클래스를 토글하여 드롭다운을 열고 닫음
+    dropdown.classList.toggle('show');
 }
 
-function toggleFollow(button) {
-    button.classList.toggle('active'); // active 클래스 추가/제거
-    button.textContent = button.classList.contains('active') ? 'フォロー中' : 'フォロー'; // 텍스트 변경
-}
+// 드롭다운 외부 클릭 시 닫기 기능 추가
+window.onclick = function(event) {
+    if (!event.target.matches('.icon1 img') && !event.target.matches('.icon2 img')) {
+        const notificationDropdown = document.getElementById('notification-dropdown');
+        const profileDropdown = document.getElementById('profile-dropdown');
+        if (notificationDropdown.classList.contains('show')) {
+            notificationDropdown.classList.remove('show');
+        }
+        if (profileDropdown.classList.contains('show')) {
+            profileDropdown.classList.remove('show');
+        }
+    }
+};
+
+
 
     </script>
 </body>

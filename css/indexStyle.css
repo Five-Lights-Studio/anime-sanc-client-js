@@ -28,7 +28,7 @@
 }
 /* 메인 콘텐츠 스타일 수정 */
 .main-content {
-  margin-left: 220px; /* 사이드바의 너비와 여백을 더하여 왼쪽 마진 설정 */
+  margin-left: 320px; /* 사이드바의 너비와 여백을 더하여 왼쪽 마진 설정 */
   padding: 20px;
   overflow: hidden; /* 메인 콘텐츠가 사이드바를 넘어가지 않도록 숨기기 */
 }
@@ -49,6 +49,7 @@
   position: relative;
   width: calc(100% - 220px); /* 사이드바를 뺀 나머지 너비를 사용 */
   max-width: 100%;
+  margin-left: 100px; /* 카드 열 전체를 오른쪽으로 100px 이동 */
 }
 .carousel-control-next {
     position: absolute;
@@ -289,14 +290,15 @@ p.card-author {
 
 /* 검색 바 고정 및 정렬 */
 #search-form {
-  position: fixed; /* 고정 위치로 변경 */
-  top: 10px; /* 화면 상단에서 10px 아래로 위치 */
-  left: 50%; /* 화면의 가로 중심에 위치 */
-  transform: translateX(-50%); /* 검색 바를 가로 중앙에 정렬 */
-  display: flex; /* 검색 바와 버튼을 수평으로 정렬 */
-  align-items: center; /* 수직 가운데 정렬 */
-  white-space: nowrap; /* 검색 바와 버튼이 한 줄로 유지되도록 설정 */
-  z-index: 1050; /* 검색 바를 사이드바 위에 위치 */
+  position: static; /* 기본 위치 속성으로 고정되지 않게 설정 */
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  background-color: #fff;
+  padding: 10px;
+  border: transparent;
+  width: 80%;
+  margin-left: 250px; /* 가로로 중앙에 위치 */
 }
 
 

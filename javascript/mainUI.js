@@ -12,11 +12,11 @@ const images = [
 ];
 
 const categoryNames = [
-  "<button class='category-button'>Anime</button> <a href='#' class='see-all-link'>すべて見る</a>",
-  "<button class='category-button'>Manga</button> <a href='#' class='see-all-link'>すべて見る</a>",
-  "<button class='category-button'>Popular Works</button> <a href='#' class='see-all-link'>すべて見る</a>",
-  "<button class='category-button'>Characters</button> <a href='#' class='see-all-link'>すべて見る</a>",
-  "<button class='category-button'>Forum</button> <a href='#' class='see-all-link'>すべて見る</a>",
+  "<button class='category-button'>アニメ</button> <a href='#' class='see-all-link'>すべて見る</a>",
+  "<button class='category-button'>漫画</button> <a href='#' class='see-all-link'>すべて見る</a>",
+  "<button class='category-button'>人気作品</button> <a href='#' class='see-all-link'>すべて見る</a>",
+  "<button class='category-button'>キャラクター</button> <a href='#' class='see-all-link'>すべて見る</a>",
+  "<button class='category-button'>フォーラム</button> <a href='#' class='see-all-link'>すべて見る</a>",
 ];
 
 let posts = [];
@@ -249,3 +249,30 @@ function logout() {
   showLoginAndRegisterButtons();
   alert("로그아웃 되었습니다.");
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+    // 카테고리 이름과 그에 해당하는 카드 열의 ID를 매핑
+    const categoryMap = {
+      "アニメ": "#wrapper-0",
+      "漫画": "#wrapper-1",
+      "人気作品": "#wrapper-2",
+      "キャラクター": "#wrapper-3",
+      "フォーラム": "#wrapper-4"
+    };
+  
+    // 사이드바의 각 카테고리 항목에 클릭 이벤트 추가
+    document.querySelectorAll(".list-group-item").forEach(function(item) {
+      item.addEventListener("click", function() {
+        const categoryName = item.textContent.trim();
+        const target = categoryMap[categoryName];
+  
+        if (target) {
+          // 해당 카테고리 카드 열로 부드럽게 스크롤
+          document.querySelector(target).scrollIntoView({
+            behavior: "smooth",
+            block: "center" // 화면 중앙에 맞게 스크롤
+          });
+        }
+      });
+    });
+  });
