@@ -75,8 +75,9 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
         // memberId의 유효성 검사
-        const memberId = localStorage.getItem("memberId");
-        if (!memberId) {
+        const memberId = parseInt(localStorage.getItem("memberId"));
+        console.log('Retrieved memberId from localStorage:', memberId);
+        if (isNaN(memberId)) {
             alert('ログインが必要です。');
             return;
         }

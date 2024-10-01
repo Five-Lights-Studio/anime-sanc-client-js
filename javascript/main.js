@@ -18,12 +18,15 @@ async function handleLogin(event) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ usernameOrEmail: username, password })
     });
-
     
     
-
     if (response.ok) {
-      console.log('로그인 요청 성공'); // 로그 추가
+      const responseData = await response.json();  // 서버 응답에서 memberId를 추출
+      const memberId = responseData.memberId || responseData.id;  // 서버 응답에서 적절한 필드 확인
+  // 서버 응답에서 받은 memberId
+      localStorage.setItem("isLoggedIn", "true");
+      localStorage.setItem("memberId", memberId);  // memberId 저장
+      console.log('로그인 성공, memberId:', memberId);  // 로그 추가
       login(); // 로그인 성공 시 login() 함수 호출
     } else {
       const errorData = await response.json();
