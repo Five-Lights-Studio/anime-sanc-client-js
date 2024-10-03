@@ -66,8 +66,9 @@ document.addEventListener("DOMContentLoaded", function() {
             },
             body: JSON.stringify({
                 title: title,
-                content: content,
-                categoryId: 1 // 필요 시 categoryId 변경
+                contents: content,
+                categoryId: 1, // 필요 시 categoryId 변경
+                memberId: 1
             })
         })
         .then(response => {
