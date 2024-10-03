@@ -61,7 +61,8 @@
                 const response = await fetch('http://localhost:9000/api/members/login', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(requestData)
+                    body: JSON.stringify(requestData),
+                    credentials: 'include'  // 세션 쿠키를 포함하도록 설정
                 });
 
                 const contentType = response.headers.get("content-type");
