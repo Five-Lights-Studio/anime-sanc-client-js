@@ -64,9 +64,14 @@ document.addEventListener("DOMContentLoaded", function() {
         console.log('Content:', content);
 
         // <p>タグ을 제거하는 함수 호출
-        content = removePTags(content);
-        console.log('Content after removing <p> tags:', content);
-
+        // content = removePTags(content);
+        // console.log('Content after removing <p> tags:', content);
+        
+        // HTML 태그 제거
+        content = stripHtmlTags(content);
+        console.log('Title:', title);
+        console.log('Content after removing HTML tags:', content);
+        
         // 상세한 유효성 검사
         if (!title || !content || content === defaultEditorPlaceholder || selectedCategoryId === null) {
             alert('タイトル、内容、およびカテゴリは必須です。');
@@ -179,3 +184,10 @@ document.addEventListener("DOMContentLoaded", function() {
         return doc.body.innerHTML;
     }
 });
+
+//HTML 태그제거
+function stripHtmlTags(html) {
+    const div = document.createElement('div');
+    div.innerHTML = html;
+    return div.textContent || div.innerText || '';
+}

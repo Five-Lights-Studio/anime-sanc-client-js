@@ -44,64 +44,105 @@
     </div>
 
     <script>
-        async function handleLogin(event) {
-            event.preventDefault(); // 폼 기본 새로고침 방지
+        // handleLogin
+async function handleLogin(event) {
+    event.preventDefault(); // 폼 기본 새로고침 방지
 
-            const usernameOrEmail = document.getElementById('usernameOrEmail').value;
-            const password = document.getElementById('password').value;
+    const usernameOrEmail = document.getElementById('usernameOrEmail').value;
+    const password = document.getElementById('password').value;
 
-            const requestData = {
-                usernameOrEmail: usernameOrEmail,
-                password: password
-            };
+    const requestData = {
+        usernameOrEmail: usernameOrEmail,
+        password: password
+    };
 
-            console.log("Login Request Data:", requestData); // 요청 데이터 로그
+    console.log("Login Request Data:", requestData); // 요청 데이터 로그
 
-            try {
-                const response = await fetch('http://localhost:9000/api/members/login', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(requestData),
-                    credentials: 'include'  // 세션 쿠키를 포함하도록 설정
-                });
+    try {
+        const response = await fetch('http://localhost:9000/api/members/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(requestData),
+            credentials: 'include'  // 세션 쿠키를 포함하도록 설정
+        });
 
-                const contentType = response.headers.get("content-type");
-                if (response.ok) {
-                    if (contentType && contentType.includes("application/json")) {
-                        const data = await response.json();
-                        console.log('로그인 성공:', data);
-                        alert('ログインに成功しました。');
-                        // 로그인 상태를 localStorage에 저장
-                        localStorage.setItem("isLoggedIn", "true");
-                        localStorage.setItem("memberId", data.id);
+        const contentType = response.headers.get("content-type");
+        if (response.ok) {
+            if (contentType && contentType.includes("application/json")) {
+                const data = await response.json();
+                console.log('로그인 성공:', data);
+                alert('ログインに成功しました。');
+                
+                // 로그인 성공 후 세션 데이터 가져오기
+                const sessionData = await getSessionData();  // 여기서 세션 데이터를 받아옴
 
-                        // 로그인 성공 후 index.html로 이동
-                        window.location.href = 'index.html';
-                    } else {
-                        const successText = await response.text();
-                        console.log('로그인 성공:', successText);
-                        alert('ログインに成功しました。');
-                        // 로그인 상태를 localStorage에 저장
-                        localStorage.setItem("isLoggedIn", "true");
-                        localStorage.setItem("memberId", requestData.usernameOrEmail); // Assuming usernameOrEmail is unique
-
-                        // 로그인 성공 후 index.html로 이동
-                        window.location.href = 'index.html';
-                    }
-                } else {
-                    if (contentType && contentType.includes("application/json")) {
-                        const errorData = await response.json();
-                        alert(`로그인 실패: ${errorData.message}`);
-                    } else {
-                        const errorText = await response.text();
-                        alert(`로그인 실패: ${errorText}`);
-                    }
+                if (sessionData) {
+                    console.log("Session data:", sessionData);
+                    localStorage.setItem("memberId", sessionData.memberId);  // 세션 데이터 저장
                 }
-            } catch (error) {
-                console.error('로그인 중 오류 발생:', error);
-                alert('로그인에 エラーが発生しました。');
+
+                // 로그인 상태를 localStorage에 저장
+                localStorage.setItem("isLoggedIn", "true");
+                // localStorage.setItem("memberId", data.id);
+
+                // 로그인 성공 후 index.html로 이동
+                window.location.href = 'index.html';
+            } else {
+                const successText = await response.text();
+                console.log('로그인 성공:', successText);
+                alert('ログインに成功しました。');
+                
+                // 로그인 성공 후 세션 데이터 가져오기
+                const sessionData = await getSessionData();
+
+                if (sessionData) {
+                    console.log("Session data:", sessionData);
+                    localStorage.setItem("memberId", sessionData.memberId);  // 세션 데이터 저장
+                }
+
+                // 로그인 상태를 localStorage에 저장
+                localStorage.setItem("isLoggedIn", "true");
+
+                // 로그인 성공 후 index.html로 이동
+                window.location.href = 'index.html';
+            }
+        } else {
+            if (contentType && contentType.includes("application/json")) {
+                const errorData = await response.json();
+                alert(`로그인 실패: ${errorData.message}`);
+            } else {
+                const errorText = await response.text();
+                alert(`로그인 실패: ${errorText}`);
             }
         }
+    } catch (error) {
+        console.error('로그인 중 오류 발생:', error);
+        alert('ログインにエラーが発生しました。');
+    }
+}
+
+// 세션 데이터 가져오기 함수
+async function getSessionData() {
+    try {
+        const response = await fetch('http://localhost:9000/api/members/session-data', {
+            method: 'GET',
+            credentials: 'include'
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            return data;  // 세션 데이터를 반환
+        } else {
+            console.error("Failed to fetch session data.");
+            return null;  // 세션 데이터가 없을 경우 null 반환
+        }
+    } catch (error) {
+        console.error("Error fetching session data:", error);
+        return null;
+    }
+}
+
+
 
         function redirectToGoogle() {
             // Google OAuth2 인증을 위한 엔드포인트로 리다이렉트
