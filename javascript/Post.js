@@ -100,7 +100,7 @@
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer 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`
+                        'Authorization': `censored`
                     },
                     body: JSON.stringify({
                         model: `gpt-4o-mini`,
